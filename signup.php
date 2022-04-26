@@ -16,7 +16,8 @@
         }
         else{
             if($password==$cpassword){
-                $sql="INSERT INTO `users` (`username`, `password`, `dt`) VALUES ('$username', '$password', current_timestamp())";
+                $hash=password_hash($password, PASSWORD_DEFAULT);
+                $sql="INSERT INTO `users` (`username`, `password`, `dt`) VALUES ('$username', '$hash', current_timestamp())";
                 $result=mysqli_query($connection,$sql);
                 if($result){
                     $showAlert=true;
